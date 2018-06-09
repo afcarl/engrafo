@@ -60,10 +60,6 @@ RUN mkdir -p /app /node_modules
 RUN chown engrafo:engrafo /app /node_modules
 WORKDIR /app
 
-# server
-COPY server/requirements.txt /app/server/
-RUN pip install -r server/requirements.txt
-
 # Run user as non privileged.
 USER engrafo
 
@@ -75,7 +71,6 @@ COPY package.json yarn.lock /
 RUN cd /; yarn install --pure-lockfile
 ENV PATH /node_modules/.bin:$PATH
 
-ENV PYTHONUNBUFFERED=1
 ENV PATH="/app/bin:${PATH}"
 
 COPY . /app
