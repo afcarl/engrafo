@@ -11,7 +11,6 @@
   "dependencies": {
     "async": "^2.6.1",
     "aws-sdk": "^2.127.0",
-    "distill-template": "git+https://github.com/arxiv-vanity/template.git#engrafo",
     "fs-extra": "^6.0.1",
     "linkify-urls": "^2.0.0",
     "mathjax-node-page": "^2.0.0",

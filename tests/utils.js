@@ -33,8 +33,10 @@ exports.renderToDom = async input => {
 exports.expectToMatchSnapshot = async inputPath => {
   const { htmlPath, document } = await exports.renderToDom(inputPath);
 
-  removeDescendantsWithTagName(document.body, "script");
-  removeDescendantsWithTagName(document.body, "style");
+  removeDescendants(document.body, "script");
+  removeDescendants(document.body, "style");
+  // This includes the time generated, so is not deterministic
+  removeDescendants(document.body, ".ltx_page_logo");
   expect(document.body).toMatchSnapshot();
 
   const localPage = await browser.newPage();
@@ -49,8 +51,8 @@ exports.expectToMatchSnapshot = async inputPath => {
   }
 };
 
-function removeDescendantsWithTagName(element, tagName) {
-  Array.from(element.getElementsByTagName(tagName)).forEach(el => {
+function removeDescendants(element, selector) {
+  Array.from(element.querySelectorAll(selector)).forEach(el => {
     el.parentNode.removeChild(el);
   });
 }
