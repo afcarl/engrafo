@@ -1,0 +1,446 @@
+<!DOCTYPE html><html><head>
+<title>Building Detection from Satellite Images on a Global Scale</title>
+<!--Generated on Sun Jun 10 13:04:27 2018 by LaTeXML (version 0.8.2) http://dlmf.nist.gov/LaTeXML/.-->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../src/css/index.scss" type="text/css">
+<style type="text/css">.mjx-chtml {display: inline-block; line-height: 0; text-indent: 0; text-align: left; text-transform: none; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; letter-spacing: normal; word-wrap: normal; word-spacing: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; margin: 0; padding: 1px 0}
+.MJXc-display {display: block; text-align: center; margin: 1em 0; padding: 0}
+.mjx-chtml[tabindex]:focus, body :focus .mjx-chtml[tabindex] {display: inline-table}
+.mjx-full-width {text-align: center; display: table-cell!important; width: 10000em}
+.mjx-math {display: inline-block; border-collapse: separate; border-spacing: 0}
+.mjx-math * {display: inline-block; -webkit-box-sizing: content-box!important; -moz-box-sizing: content-box!important; box-sizing: content-box!important; text-align: left}
+.mjx-numerator {display: block; text-align: center}
+.mjx-denominator {display: block; text-align: center}
+.MJXc-stacked {height: 0; position: relative}
+.MJXc-stacked > * {position: absolute}
+.MJXc-bevelled > * {display: inline-block}
+.mjx-stack {display: inline-block}
+.mjx-op {display: block}
+.mjx-under {display: table-cell}
+.mjx-over {display: block}
+.mjx-over > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-under > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-stack > .mjx-sup {display: block}
+.mjx-stack > .mjx-sub {display: block}
+.mjx-prestack > .mjx-presup {display: block}
+.mjx-prestack > .mjx-presub {display: block}
+.mjx-delim-h > .mjx-char {display: inline-block}
+.mjx-surd {vertical-align: top}
+.mjx-mphantom * {visibility: hidden}
+.mjx-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 2px 3px; font-style: normal; font-size: 90%}
+.mjx-annotation-xml {line-height: normal}
+.mjx-menclose > svg {fill: none; stroke: currentColor}
+.mjx-mtr {display: table-row}
+.mjx-mlabeledtr {display: table-row}
+.mjx-mtd {display: table-cell; text-align: center}
+.mjx-label {display: table-row}
+.mjx-box {display: inline-block}
+.mjx-block {display: block}
+.mjx-span {display: inline}
+.mjx-char {display: block; white-space: pre}
+.mjx-itable {display: inline-table; width: auto}
+.mjx-row {display: table-row}
+.mjx-cell {display: table-cell}
+.mjx-table {display: table; width: 100%}
+.mjx-line {display: block; height: 0}
+.mjx-strut {width: 0; padding-top: 1em}
+.mjx-vsize {width: 0}
+.MJXc-space1 {margin-left: .167em}
+.MJXc-space2 {margin-left: .222em}
+.MJXc-space3 {margin-left: .278em}
+.mjx-ex-box-test {position: absolute; overflow: hidden; width: 1px; height: 60ex}
+.mjx-line-box-test {display: table!important}
+.mjx-line-box-test span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MJXc-TeX-unknown-R {font-family: monospace; font-style: normal; font-weight: normal}
+.MJXc-TeX-unknown-I {font-family: monospace; font-style: italic; font-weight: normal}
+.MJXc-TeX-unknown-B {font-family: monospace; font-style: normal; font-weight: bold}
+.MJXc-TeX-unknown-BI {font-family: monospace; font-style: italic; font-weight: bold}
+.MJXc-TeX-ams-R {font-family: MJXc-TeX-ams-R,MJXc-TeX-ams-Rw}
+.MJXc-TeX-cal-B {font-family: MJXc-TeX-cal-B,MJXc-TeX-cal-Bx,MJXc-TeX-cal-Bw}
+.MJXc-TeX-frak-R {font-family: MJXc-TeX-frak-R,MJXc-TeX-frak-Rw}
+.MJXc-TeX-frak-B {font-family: MJXc-TeX-frak-B,MJXc-TeX-frak-Bx,MJXc-TeX-frak-Bw}
+.MJXc-TeX-math-BI {font-family: MJXc-TeX-math-BI,MJXc-TeX-math-BIx,MJXc-TeX-math-BIw}
+.MJXc-TeX-sans-R {font-family: MJXc-TeX-sans-R,MJXc-TeX-sans-Rw}
+.MJXc-TeX-sans-B {font-family: MJXc-TeX-sans-B,MJXc-TeX-sans-Bx,MJXc-TeX-sans-Bw}
+.MJXc-TeX-sans-I {font-family: MJXc-TeX-sans-I,MJXc-TeX-sans-Ix,MJXc-TeX-sans-Iw}
+.MJXc-TeX-script-R {font-family: MJXc-TeX-script-R,MJXc-TeX-script-Rw}
+.MJXc-TeX-type-R {font-family: MJXc-TeX-type-R,MJXc-TeX-type-Rw}
+.MJXc-TeX-cal-R {font-family: MJXc-TeX-cal-R,MJXc-TeX-cal-Rw}
+.MJXc-TeX-main-B {font-family: MJXc-TeX-main-B,MJXc-TeX-main-Bx,MJXc-TeX-main-Bw}
+.MJXc-TeX-main-I {font-family: MJXc-TeX-main-I,MJXc-TeX-main-Ix,MJXc-TeX-main-Iw}
+.MJXc-TeX-main-R {font-family: MJXc-TeX-main-R,MJXc-TeX-main-Rw}
+.MJXc-TeX-math-I {font-family: MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw}
+.MJXc-TeX-size1-R {font-family: MJXc-TeX-size1-R,MJXc-TeX-size1-Rw}
+.MJXc-TeX-size2-R {font-family: MJXc-TeX-size2-R,MJXc-TeX-size2-Rw}
+.MJXc-TeX-size3-R {font-family: MJXc-TeX-size3-R,MJXc-TeX-size3-Rw}
+.MJXc-TeX-size4-R {font-family: MJXc-TeX-size4-R,MJXc-TeX-size4-Rw}
+.MJXc-TeX-vec-R {font-family: MJXc-TeX-vec-R,MJXc-TeX-vec-Rw}
+.MJXc-TeX-vec-B {font-family: MJXc-TeX-vec-B,MJXc-TeX-vec-Bx,MJXc-TeX-vec-Bw}
+@font-face {font-family: MJXc-TeX-ams-R; src: local('MathJax_AMS'), local('MathJax_AMS-Regular')}
+@font-face {font-family: MJXc-TeX-ams-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_AMS-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_AMS-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_AMS-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-B; src: local('MathJax_Caligraphic Bold'), local('MathJax_Caligraphic-Bold')}
+@font-face {font-family: MJXc-TeX-cal-Bx; src: local('MathJax_Caligraphic'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-cal-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-R; src: local('MathJax_Fraktur'), local('MathJax_Fraktur-Regular')}
+@font-face {font-family: MJXc-TeX-frak-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-B; src: local('MathJax_Fraktur Bold'), local('MathJax_Fraktur-Bold')}
+@font-face {font-family: MJXc-TeX-frak-Bx; src: local('MathJax_Fraktur'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-frak-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-BI; src: local('MathJax_Math BoldItalic'), local('MathJax_Math-BoldItalic')}
+@font-face {font-family: MJXc-TeX-math-BIx; src: local('MathJax_Math'); font-weight: bold; font-style: italic}
+@font-face {font-family: MJXc-TeX-math-BIw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Math-BoldItalic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Math-BoldItalic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Math-BoldItalic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-R; src: local('MathJax_SansSerif'), local('MathJax_SansSerif-Regular')}
+@font-face {font-family: MJXc-TeX-sans-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-B; src: local('MathJax_SansSerif Bold'), local('MathJax_SansSerif-Bold')}
+@font-face {font-family: MJXc-TeX-sans-Bx; src: local('MathJax_SansSerif'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-sans-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-I; src: local('MathJax_SansSerif Italic'), local('MathJax_SansSerif-Italic')}
+@font-face {font-family: MJXc-TeX-sans-Ix; src: local('MathJax_SansSerif'); font-style: italic}
+@font-face {font-family: MJXc-TeX-sans-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-script-R; src: local('MathJax_Script'), local('MathJax_Script-Regular')}
+@font-face {font-family: MJXc-TeX-script-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Script-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Script-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Script-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-type-R; src: local('MathJax_Typewriter'), local('MathJax_Typewriter-Regular')}
+@font-face {font-family: MJXc-TeX-type-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Typewriter-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Typewriter-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Typewriter-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-R; src: local('MathJax_Caligraphic'), local('MathJax_Caligraphic-Regular')}
+@font-face {font-family: MJXc-TeX-cal-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-B; src: local('MathJax_Main Bold'), local('MathJax_Main-Bold')}
+@font-face {font-family: MJXc-TeX-main-Bx; src: local('MathJax_Main'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-main-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Main-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-I; src: local('MathJax_Main Italic'), local('MathJax_Main-Italic')}
+@font-face {font-family: MJXc-TeX-main-Ix; src: local('MathJax_Main'); font-style: italic}
+@font-face {font-family: MJXc-TeX-main-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Main-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-R; src: local('MathJax_Main'), local('MathJax_Main-Regular')}
+@font-face {font-family: MJXc-TeX-main-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Main-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-I; src: local('MathJax_Math Italic'), local('MathJax_Math-Italic')}
+@font-face {font-family: MJXc-TeX-math-Ix; src: local('MathJax_Math'); font-style: italic}
+@font-face {font-family: MJXc-TeX-math-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Math-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size1-R; src: local('MathJax_Size1'), local('MathJax_Size1-Regular')}
+@font-face {font-family: MJXc-TeX-size1-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Size1-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size2-R; src: local('MathJax_Size2'), local('MathJax_Size2-Regular')}
+@font-face {font-family: MJXc-TeX-size2-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Size2-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size3-R; src: local('MathJax_Size3'), local('MathJax_Size3-Regular')}
+@font-face {font-family: MJXc-TeX-size3-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Size3-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size4-R; src: local('MathJax_Size4'), local('MathJax_Size4-Regular')}
+@font-face {font-family: MJXc-TeX-size4-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Size4-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-vec-R; src: local('MathJax_Vector'), local('MathJax_Vector-Regular')}
+@font-face {font-family: MJXc-TeX-vec-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Vector-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Vector-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Vector-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-vec-B; src: local('MathJax_Vector Bold'), local('MathJax_Vector-Bold')}
+@font-face {font-family: MJXc-TeX-vec-Bx; src: local('MathJax_Vector'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-vec-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/eot/MathJax_Vector-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/woff/MathJax_Vector-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/fonts/HTML-CSS/TeX/otf/MathJax_Vector-Bold.otf') format('opentype')}
+</style></head>
+<body>
+<div class="ltx_page_main">
+<div class="ltx_page_content">
+<article class="ltx_document ltx_authors_1line">
+<h1 class="ltx_title ltx_title_document">Building Detection from Satellite Images on a Global Scale</h1>
+<div class="ltx_authors">
+<span class="ltx_creator ltx_role_author">
+<span class="ltx_personname">
+Amy Zhang
+<br class="ltx_break">Facebook
+<br class="ltx_break"><span class="ltx_text ltx_font_typewriter">amyzhang@fb.com</span>
+<br class="ltx_break"><span class="ltx_ERROR undefined">\And</span>Xianming Liu<span id="footnotex1" class="ltx_note ltx_role_footnotemark"><sup class="ltx_note_mark">1</sup><span class="ltx_note_outer"><span class="ltx_note_content"><sup class="ltx_note_mark">1</sup><span class="ltx_note_type">footnotemark: </span><span class="ltx_tag ltx_tag_note">1</span></span></span></span>
+<br class="ltx_break">Facebook
+<br class="ltx_break"><span class="ltx_text ltx_font_typewriter">xmliu@fb.com</span>
+<br class="ltx_break"><span class="ltx_ERROR undefined">\And</span>Andreas Gros
+<br class="ltx_break">Facebook
+<br class="ltx_break"><span class="ltx_text ltx_font_typewriter">andreasg@fb.com</span>
+<br class="ltx_break"><span class="ltx_ERROR undefined">\And</span>Tobias Tiecke
+<br class="ltx_break">Facebook
+<br class="ltx_break"><span class="ltx_text ltx_font_typewriter">ttiecke@fb.com</span>
+<br class="ltx_break">
+</span><span class="ltx_author_notes"><span>Authors are of equal contribution</span></span></span>
+</div>
+
+<div class="ltx_abstract">
+<h6 class="ltx_title ltx_title_abstract">Abstract</h6>
+<p class="ltx_p">In the last several years, remote sensing technology has opened up the possibility of performing large scale building detection from satellite imagery. Our work is some of the first to create population density maps from building detection on a large scale. The scale of our work on population density estimation via high resolution satellite images raises many issues, that we will address in this paper. The first was data acquisition. Labeling buildings from satellite images is a hard problem, one where we found our labelers to only be about 85% accurate at. There is a tradeoff of quantity vs. quality of labels, so we designed two separate policies for labels meant for training sets and those meant for test sets, since our requirements of the two set types are quite different. We also trained weakly supervised footprint detection models with the classification labels, and semi-supervised approaches with a small number of pixel-level labels, which are very expensive to procure.</p>
+</div>
+<section id="S1" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">1 </span>Introduction</h2>
+
+<div id="S1.p1" class="ltx_para">
+<p class="ltx_p">With the recent improvements in remote sensing technology, there has been a lot of work in building detection and classification from high resolution satellite imagery. However, we are the first to implement a system on a global scale. Other work uses handpicked features to define buildings <cite class="ltx_cite ltx_citemacro_cite"><a href="#bib.bib1" title="" class="ltx_ref"><span class="ltx_text" style="font-size:90%;">DBLP:journals/corr/Cohen0KCD16</span> ()</a></cite> <cite class="ltx_cite ltx_citemacro_cite"><a href="#bib.bib2" title="" class="ltx_ref"><span class="ltx_text" style="font-size:90%;">autorooftop</span> ()</a></cite> which would not scale well across countries with very different styles of buildings. The work closest to ours is done by Yuan <cite class="ltx_cite ltx_citemacro_cite"><a href="#bib.bib3" title="" class="ltx_ref"><span class="ltx_text" style="font-size:90%;">DBLP:journals/corr/Yuan16</span> ()</a></cite>, which also uses pixel level convolutional neural networks for building detection, but is only validated on a handful of cities in the US and likely would not transfer well to smaller settlements or other countries.</p>
+</div>
+<div id="S1.p2" class="ltx_para">
+<p class="ltx_p">In order to speed up our pipeline we need a fast bounding box proposal algorithm to limit the number of images that need to be run through our convolutional neural network. To maintain high recall, however, we need to be careful to not filter out too many candidates. We used a naive bounding box proposal algorithm, by performing straight edge detection to extract smaller masks to run through our classification network. This reduced the amount of landmass to process by 50%. The distribution of buildings is still very negatively skewed, where only 2% of proposals are positive. This also means we need to sample a large number of masks in order to have confident precision and recall numbers by country. We also use a weak building classifier to filter masks with over 0.3 IoU (intersection over union) by choosing the mask with the highest probability of containing a building in the center, since these overlapping masks are likely to contain the same building.</p>
+</div>
+<div id="S1.p3" class="ltx_para">
+<p class="ltx_p">Discovering systematic issues with our models is also a slow, manual problem that requires visualization of .kmz files, pinpointing large numbers of false positive or false negative areas, and debugging the causes. The problems encountered included noise, contrast issues, cloud cover, or just deficiencies in the model, and we set up a feedback loop to fix those problems.</p>
+</div>
+<div id="S1.p4" class="ltx_para">
+<p class="ltx_p">We will be open sourcing our population density results as well as our labeled dataset as a benchmark for future efforts.</p>
+</div>
+</section>
+<section id="S2" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">2 </span>Dataset Collection Issues</h2>
+
+<div id="S2.p1" class="ltx_para">
+<p class="ltx_p">We have two goals for data collection, obtaining labels for training, and accuracy numbers on a country level. Obtaining accuracy numbers of the entire pipeline for a single country requires randomly sampling from all possible 64x64 masks. That distribution is incredibly skewed, and randomly sampling enough masks to obtain a reasonable confidence interval on accuracy is expensive. Instead, we measure how well our neural network performs building classification by randomly sampling from the distribution of masks generated by our bounding box proposal algorithm. The assumption is that the bounding box proposal algorithm only eliminates clear negatives, so reduces skew on the underlying distribution without affecting recall of the overall pipeline. This drops the number of labels we need by a factor of 10, because our new distribution now is 2%-5% positive.</p>
+</div>
+<div id="S2.p2" class="ltx_para">
+<p class="ltx_p">Collecting a training set went through several iterations because we want a more balanced dataset for training so the model can get enough samples of both the background and the building classes. We also employ simple active learning techniques by sampling from masks the network was "less sure" about, where the probability was closer to the threshold.</p>
+</div>
+</section>
+<section id="S3" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">3 </span>Generalizing a Global Model</h2>
+
+<div id="S3.p1" class="ltx_para">
+<p class="ltx_p">Training a global building classification model has trade-offs. Buildings can look very different across different countries, but there is still a lot of information that can be transferred from country to country. We initially started with a model trained only on Tanzania, which when applied to a new country had a large drop in accuracy. However, we found that as we labeled data in more countries and re-trained our model with the new data, our new global model performed better on Tanzania than a Tanzania specific model. The generalizations learned from other countries made the model more robust.</p>
+</div>
+<div id="S3.p2" class="ltx_para">
+<p class="ltx_p">Another argument for training a global model is that building a large training set takes time, and the amount of data required to train a model from scratch for each country was prohibitive.</p>
+</div>
+<div id="S3.p3" class="ltx_para">
+<p class="ltx_p">The trade-off is that the global model doesn’t work equally well on all countries, and we found it necessary to perform some amount of model specialization. We fine-tuned the global model with the same samples it had seen from the initial training, but only from a handful of countries that we wanted it to improve upon. We saw gains of 20-40% in precision and recall on the validation set using the extra fine-tuning step, but noticed there were trade-offs. The training and validation sets gave no evidence of overfitting, but we saw an increase in systematic false positives when visualizing the results on a country level, in certain countries.</p>
+</div>
+<section id="S3.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.1 </span>Building Classification Model</h3>
+
+<div id="S3.SS1.p1" class="ltx_para">
+<p class="ltx_p">The classification model we trained was a weakly supervised version of SegNet <cite class="ltx_cite ltx_citemacro_cite"><a href="#bib.bib4" title="" class="ltx_ref"><span class="ltx_text" style="font-size:90%;">DBLP:journals/corr/BadrinarayananK15</span> ()</a></cite>, which is a fast yet accurate pixel classification network that uses deconvolution layers. We trained with weak “pixel level” labels, and generate a mask level probability using global average pooling on the final pixel level probabilities over the 64x64 mask. We have 500TB of satellite imagery, and being able to run the model over all these countries (multiple times) is crucial for fast iteration. It was a non-trivial task to develop a model that was large enough to capture the complex idea of what defines a building, while also being small enough to run quickly during inference time. SegNet performed well on this by saving the indices from the max pooling layers to perform non-linear upsampling in the deconvolution layers.</p>
+</div>
+</section>
+<section id="S3.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">3.2 </span>Building Segmentation Model</h3>
+
+<figure id="S3.F1" class="ltx_figure"><img src="footprints.png" id="S3.F1.g1" class="ltx_graphics ltx_centering" width="271" height="98" alt="">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 1: </span>Semantic segmentation results using weakly-supervised model.</figcaption>
+</figure>
+<div id="S3.SS2.p1" class="ltx_para">
+<p class="ltx_p">Finely pixel-wise labeled data is extremely time consuming to acquire, and errors will accumulate especially for small foreground objects. Instead of utilizing fully supervised semantic segmentation method such as FCN <cite class="ltx_cite ltx_citemacro_cite"><a href="#bib.bib5" title="" class="ltx_ref"><span class="ltx_text" style="font-size:90%;">long2015fully</span> ()</a></cite>, we investigated weakly supervised segmentation models relying on feedback neural network <cite class="ltx_cite ltx_citemacro_cite"><a href="#bib.bib6" title="" class="ltx_ref"><span class="ltx_text" style="font-size:90%;">cao2015look</span> ()</a></cite>, which utilizes the large amount of “cheap” weakly-supervised training data. Notably, to increase the efficiency of semantic segmentation, the classification model is composed to filter out negative candidate regions. By combining results from both models, the segmentation model successfully suppress false positives and generate best results, with an example shown in Figure&nbsp;<a href="#S3.F1" title="Figure 1 ‣ 3.2 Building Segmentation Model ‣ 3 Generalizing a Global Model ‣ Building Detection from Satellite Images on a Global Scale" class="ltx_ref"><span class="ltx_text ltx_ref_tag">1</span></a></p>
+</div>
+</section>
+</section>
+<section id="S4" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">4 </span>Dealing with Systematic Errors</h2>
+
+<section id="S4.SS1" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.1 </span>Finding Systematic Errors</h3>
+
+<div id="S4.SS1.p1" class="ltx_para">
+<p class="ltx_p">The precision and recall numbers we measure by randomly sampling from the mask candidates do not account for systematic errors arising from varying satellite image quality. To discover those systematic errors, we adopt both visually inspection and evaluation using external data.</p>
+</div>
+<div id="S4.SS1.p2" class="ltx_para">
+<p class="ltx_p">Intuitively, we visualize our results by construction <span class="ltx_text ltx_emph ltx_font_italic">KMZ</span> files and overlaying with Google Earth to manually pinpoint areas of concern. We also use this strategy to sample <span class="ltx_text ltx_emph ltx_font_italic">ambiguous</span> training data to fine-tune our model to reduce the chance of further systematic errors.
+Moreover, we also quantitatively measure systematic errors at a coarser scale by comparing our results with external datasets on those areas with adequate data coverage. However, it is still an open question to discover systematic errors on large scale with less manual work.</p>
+</div>
+</section>
+<section id="S4.SS2" class="ltx_subsection">
+<h3 class="ltx_title ltx_title_subsection">
+<span class="ltx_tag ltx_tag_subsection">4.2 </span>Data Quality</h3>
+
+<figure id="S4.F4" class="ltx_figure">
+<table style="width:100%;">
+<tbody><tr>
+<td class="ltx_subfigure">
+<figure id="S4.F2.sf1" class="ltx_figure ltx_align_center"><img src="denoising_before.png" id="S4.F2.sf1.g1" class="ltx_graphics" width="134" height="178" alt="">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">(a) </span>Before Denoising</figcaption>
+</figure>
+</td>
+<td class="ltx_subfigure">
+<figure id="S4.F3.sf2" class="ltx_figure ltx_align_center"><img src="denoising_after.png" id="S4.F3.sf2.g1" class="ltx_graphics" width="133" height="178" alt="">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">(b) </span>After Denoising</figcaption>
+</figure>
+</td>
+</tr>
+</tbody></table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 4: </span>Classification Results before and after denoising.</figcaption>
+</figure>
+<div id="S4.SS2.p1" class="ltx_para">
+<p class="ltx_p">One of the reasons for systematic errors is also issues with data quality. The satellite images are taken at various times of day, and pre-processed across multiple layers for the highest quality image. However, areas with a lot of cloud cover tend to have much fewer clear images taken, and so quality suffers. This has an impact on our model, since most of the data is randomly or semi-randomly sampled, and so it does not get a lot of exposure to these poorer quality images during training. We use geographical meta-information to further detect the cloud occlusion during deploying stage.</p>
+</div>
+<div id="S4.SS2.p2" class="ltx_para">
+<p class="ltx_p">Another key factor of low data quality comes from noise, which are introduced in either imaging or image enhancing phases. Traditional image denoising approach such as BM3D <cite class="ltx_cite ltx_citemacro_cite"><a href="#bib.bib7" title="" class="ltx_ref"><span class="ltx_text" style="font-size:90%;">dabov2006image</span> ()</a></cite> is computationally expensive in handling large imagery files, and can only work for limited type of noises, such as white noise. To this end, we train a shallow neural network end-to-end by mimicking several kinds of noise existed in satellite images. The trained denoising model is appended as a transformer before imagery is fed to the classification network.
+Comparison of classification results of the same low data quality area before and after denoising is shown in Figure <a href="#S4.F4" title="Figure 4 ‣ 4.2 Data Quality ‣ 4 Dealing with Systematic Errors ‣ Building Detection from Satellite Images on a Global Scale" class="ltx_ref"><span class="ltx_text ltx_ref_tag">4</span></a>.</p>
+</div>
+</section>
+</section>
+<section id="S5" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">5 </span>Results</h2>
+
+<div id="S5.p1" class="ltx_para">
+<p class="ltx_p">Overall the SegNet model by itself achieves a precision and recall of <span id="S5.p1.m1" class="ltx_Math"><span class="mjpage"><span class="mjx-chtml"><span class="mjx-math" aria-label="pr=0.9"><span class="mjx-mrow" aria-hidden="true"><span class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.225em; padding-bottom: 0.446em;">p</span></span><span class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.225em; padding-bottom: 0.298em;">r</span></span><span class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.077em; padding-bottom: 0.298em;">=</span></span><span class="mjx-mn MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.372em; padding-bottom: 0.372em;">0.9</span></span></span></span></span></span></span>, <span id="S5.p1.m2" class="ltx_Math"><span class="mjpage"><span class="mjx-chtml"><span class="mjx-math" aria-label="re=0.89"><span class="mjx-mrow" aria-hidden="true"><span class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.225em; padding-bottom: 0.298em;">r</span></span><span class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.225em; padding-bottom: 0.298em;">e</span></span><span class="mjx-mo MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.077em; padding-bottom: 0.298em;">=</span></span><span class="mjx-mn MJXc-space3"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.372em; padding-bottom: 0.372em;">0.89</span></span></span></span></span></span></span> on a global dataset where the imbalance is such that <span id="S5.p1.m3" class="ltx_Math"><span class="mjpage"><span class="mjx-chtml"><span class="mjx-math" aria-label="93\%"><span class="mjx-mrow" aria-hidden="true"><span class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.372em; padding-bottom: 0.372em;">93</span></span><span class="mjx-mi"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.446em; padding-bottom: 0.372em;">%</span></span></span></span></span></span></span> of the randomly sampled testing data is not a building.
+Below we have some heat maps generated of building density in three countries: Mozambique, Madagascar, and India.</p>
+</div>
+<figure id="S5.F8" class="ltx_figure">
+<table style="width:100%;">
+<tbody><tr>
+<td class="ltx_subfigure">
+<figure id="S5.F5.sf1" class="ltx_figure ltx_align_center"><img src="moz.png" id="S5.F5.sf1.g1" class="ltx_graphics" width="122" height="178" alt="">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">(a) </span>Mozambique</figcaption>
+</figure>
+</td>
+<td class="ltx_subfigure">
+<figure id="S5.F6.sf2" class="ltx_figure ltx_align_center"><img src="madagascar.png" id="S5.F6.sf2.g1" class="ltx_graphics" width="111" height="178" alt="">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">(b) </span>Madagascar</figcaption>
+</figure>
+</td>
+<td class="ltx_subfigure">
+<figure id="S5.F7.sf3" class="ltx_figure ltx_align_center"><img src="india.png" id="S5.F7.sf3.g1" class="ltx_graphics" width="178" height="178" alt="">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">(c) </span>India</figcaption>
+</figure>
+</td>
+</tr>
+</tbody></table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 8: </span>Building Heat Maps</figcaption>
+</figure>
+<div id="S5.p2" class="ltx_para">
+<p class="ltx_p">So far we have released datasets for 5 countries: Haiti, Malawi, Ghana, South Africa, and Sri Lanka. The rest are pending validation with third party groups. Below we show precision recall curves and best F-score with confidence intervals for each of the countries released.</p>
+</div>
+<figure id="S5.F11" class="ltx_figure">
+<table style="width:100%;">
+<tbody><tr>
+<td class="ltx_subfigure">
+<figure id="S5.F9.sf1" class="ltx_figure ltx_align_center"><img src="pr-curve.png" id="S5.F9.sf1.g1" class="ltx_graphics" width="205" height="178" alt="">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">(a) </span>Pr/Re Curves</figcaption>
+</figure>
+</td>
+<td class="ltx_subfigure">
+<figure id="S5.F10.sf2" class="ltx_figure ltx_align_center"><img src="f-score.png" id="S5.F10.sf2.g1" class="ltx_graphics" width="225" height="178" alt="">
+<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">(b) </span>Confidence Intervals for F-Score</figcaption>
+</figure>
+</td>
+</tr>
+</tbody></table>
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 11: </span>Classification Performance</figcaption>
+</figure>
+<div id="S5.p3" class="ltx_para">
+<p class="ltx_p">The estimation of population density via settlement buildings as a proxy results in significant improvement compared with previous efforts. Figure&nbsp;<a href="#S5.F12" title="Figure 12 ‣ 5 Results ‣ Building Detection from Satellite Images on a Global Scale" class="ltx_ref"><span class="ltx_text ltx_ref_tag">12</span></a> shows the comparison of previous highest resolution estimation from Galantis and our own results. This gives a totally new perspective to various social / economic research.</p>
+</div>
+<figure id="S5.F12" class="ltx_figure"><img src="stateofart.png" id="S5.F12.g1" class="ltx_graphics ltx_centering" width="271" height="108" alt="">
+<figcaption class="ltx_caption ltx_centering"><span class="ltx_tag ltx_tag_figure">Figure 12: </span>Comparison of Galantis and our results</figcaption>
+</figure>
+</section>
+<section id="S6" class="ltx_section">
+<h2 class="ltx_title ltx_title_section">
+<span class="ltx_tag ltx_tag_section">6 </span>Conclusion</h2>
+
+<div id="S6.p1" class="ltx_para">
+<p class="ltx_p">We have built one of the first building detection systems that can be deployed at a global scale. Future work includes reducing the amount of iteration required to achieve a robust model as we roll out to more countries, the biggest problem of which is detecting systematic errors. Detecting and solving these systematic issues in classification is still a work in progress. We are still looking into ways to automate the data validation process and data collection methods further, which will also shorten the length of each iteration required to improve our dataset accuracy.</p>
+</div>
+</section>
+<section id="bib" class="ltx_bibliography">
+<h2 class="ltx_title ltx_title_bibliography" style="font-size:90%;">References</h2>
+
+<ul class="ltx_biblist">
+<li id="bib.bib1" class="ltx_bibitem">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem"><span class="ltx_text" style="font-size:90%;">[1]</span></span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">
+Joseph&nbsp;Paul Cohen, Wei Ding, Caitlin Kuhlman, Aijun Chen, and Liping Di.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">Rapid building detection using machine learning.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text ltx_font_italic" style="font-size:90%;">CoRR</span><span class="ltx_text" style="font-size:90%;">, abs/1603.04392, 2016.
+</span>
+</span>
+</li>
+<li id="bib.bib2" class="ltx_bibitem">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem"><span class="ltx_text" style="font-size:90%;">[2]</span></span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">
+M.&nbsp;Cote and P.&nbsp;Saeedi.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">Automatic rooftop extraction in nadir aerial imagery of suburban
+regions using corners and variational level set evolution.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text ltx_font_italic" style="font-size:90%;">IEEE Transactions on Geoscience and Remote Sensing</span><span class="ltx_text" style="font-size:90%;">,
+51(1):313–328, 2013.
+</span>
+</span>
+</li>
+<li id="bib.bib3" class="ltx_bibitem">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem"><span class="ltx_text" style="font-size:90%;">[3]</span></span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">
+Jiangye Yuan.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">Automatic building extraction in aerial scenes using convolutional
+networks.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text ltx_font_italic" style="font-size:90%;">CoRR</span><span class="ltx_text" style="font-size:90%;">, abs/1602.06564, 2016.
+</span>
+</span>
+</li>
+<li id="bib.bib4" class="ltx_bibitem">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem"><span class="ltx_text" style="font-size:90%;">[4]</span></span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">
+Vijay Badrinarayanan, Alex Kendall, and Roberto Cipolla.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">Segnet: A deep convolutional encoder-decoder architecture for image
+segmentation.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text ltx_font_italic" style="font-size:90%;">CoRR</span><span class="ltx_text" style="font-size:90%;">, abs/1511.00561, 2015.
+</span>
+</span>
+</li>
+<li id="bib.bib5" class="ltx_bibitem">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem"><span class="ltx_text" style="font-size:90%;">[5]</span></span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">
+Jonathan Long, Evan Shelhamer, and Trevor Darrell.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">Fully convolutional networks for semantic segmentation.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">In </span><span class="ltx_text ltx_font_italic" style="font-size:90%;">Proceedings of the IEEE Conference on Computer Vision and
+Pattern Recognition</span><span class="ltx_text" style="font-size:90%;">, pages 3431–3440, 2015.
+</span>
+</span>
+</li>
+<li id="bib.bib6" class="ltx_bibitem">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem"><span class="ltx_text" style="font-size:90%;">[6]</span></span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">
+Chunshui Cao, Xianming Liu, Yi&nbsp;Yang, Yinan Yu, Jiang Wang, Zilei Wang, Yongzhen
+Huang, Liang Wang, Chang Huang, Wei Xu, et&nbsp;al.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">Look and think twice: Capturing top-down visual attention with
+feedback convolutional neural networks.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">In </span><span class="ltx_text ltx_font_italic" style="font-size:90%;">Proceedings of the IEEE International Conference on Computer
+Vision</span><span class="ltx_text" style="font-size:90%;">, pages 2956–2964, 2015.
+</span>
+</span>
+</li>
+<li id="bib.bib7" class="ltx_bibitem">
+<span class="ltx_tag ltx_role_refnum ltx_tag_bibitem"><span class="ltx_text" style="font-size:90%;">[7]</span></span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">
+Kostadin Dabov, Alessandro Foi, Vladimir Katkovnik, and Karen Egiazarian.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">Image denoising with block-matching and 3d filtering.
+</span>
+</span>
+<span class="ltx_bibblock"><span class="ltx_text" style="font-size:90%;">In </span><span class="ltx_text ltx_font_italic" style="font-size:90%;">Electronic Imaging 2006</span><span class="ltx_text" style="font-size:90%;">, pages 606414–606414. International
+Society for Optics and Photonics, 2006.
+</span>
+</span>
+</li>
+</ul>
+</section>
+</article>
+</div>
+<footer class="ltx_page_footer">
+<div class="ltx_page_logo">Generated  on Sun Jun 10 13:04:27 2018 by <a href="http://dlmf.nist.gov/LaTeXML/">LaTeXML <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAYAAAD5YeaVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wKExQZLWTEaOUAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAdpJREFUKM9tkL+L2nAARz9fPZNCKFapUn8kyI0e4iRHSR1Kb8ng0lJw6FYHFwv2LwhOpcWxTjeUunYqOmqd6hEoRDhtDWdA8ApRYsSUCDHNt5ul13vz4w0vWCgUnnEc975arX6ORqN3VqtVZbfbTQC4uEHANM3jSqXymFI6yWazP2KxWAXAL9zCUa1Wy2tXVxheKA9YNoR8Pt+aTqe4FVVVvz05O6MBhqUIBGk8Hn8HAOVy+T+XLJfLS4ZhTiRJgqIoVBRFIoric47jPnmeB1mW/9rr9ZpSSn3Lsmir1fJZlqWlUonKsvwWwD8ymc/nXwVBeLjf7xEKhdBut9Hr9WgmkyGEkJwsy5eHG5vN5g0AKIoCAEgkEkin0wQAfN9/cXPdheu6P33fBwB4ngcAcByHJpPJl+fn54mD3Gg0NrquXxeLRQAAwzAYj8cwTZPwPH9/sVg8PXweDAauqqr2cDjEer1GJBLBZDJBs9mE4zjwfZ85lAGg2+06hmGgXq+j3+/DsixYlgVN03a9Xu8jgCNCyIegIAgx13Vfd7vdu+FweG8YRkjXdWy329+dTgeSJD3ieZ7RNO0VAXAPwDEAO5VKndi2fWrb9jWl9Esul6PZbDY9Go1OZ7PZ9z/lyuD3OozU2wAAAABJRU5ErkJggg==" alt="[LOGO]"></a>
+</div></footer>
+</div>
+
+
+</body></html>
