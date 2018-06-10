@@ -2,7 +2,7 @@
 
 [ ![Codeship Status for bfirsh/engrafo](https://app.codeship.com/projects/df36a360-5b2c-0135-2a70-66335668a83b/status?branch=master)](https://app.codeship.com/projects/237445)
 
-Converts LaTeX documents into beautiful responsive web pages.
+Converts LaTeX documents into beautiful responsive web pages using [LaTeXML](https://dlmf.nist.gov/LaTeXML/).
 
 It turns this sort of thing:
 
@@ -24,17 +24,25 @@ For full usage, run `docker run arxivvanity/engrafo engrafo --help`.
 
 ## Design
 
-We couldn't find a good LaTeX to HTML converter. But instead of building one from scratch, we picked some components that solved part of the problem and modified them to our needs.
+[LaTeXML](https://dlmf.nist.gov/LaTeXML/) does a superb job of converting LaTeX documents into HTML. The output isn't a great reading experience, though.
 
-The downside of this approach is a fair amount of shoe-horning, but the upside is (probably) less work, and it means we can contribute our improvements to each component back to the open-source academic community.
-
-Here is how it works:
-
-* [LaTeXML](http://dlmf.nist.gov/LaTeXML/) does most of the heavy lifting. It parses the LaTeX, outputs the basic HTML, converts images, etc.
-* [Distill's template](https://github.com/distillpub/template) is applied to style the output, make it responsive, create footnotes, and create hover boxes.
-* Intermingled with Distill's processing, some post-processors (in `src/postprocessors/`) do layout, additional styling, math rendering, bibliography rendering, and various other things. They also rearrange the HTML output from LaTeXML to make it suitable for Distill's template.
+Engrafo is a set of stylesheets and scripts for LaTeXML output. It makes the design responsive so you can read it on phones, and adds various interactive bits like footnote tooltips.
 
 ## Development environment
+
+### CSS development environment
+
+To convert LaTeX documents, you need to build a huge development environment, with several gigabytes of LaTeX junk. If you're just developing CSS, we've got a few sample conversions that you can develop with.
+
+First, install [Node](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/en/docs/install#mac-stable). Then, install the Node dependencies:
+
+    $ yarn
+
+The sample documents are `samples/*/index.html` You can use Parcel to serve these documents and compile the frontend code. For example:
+
+    $ yarn run parcel serve samples/1707.08952/index.html
+
+### Setting up a full development environment
 
 In development, you can build an image locally and use a shortcut script to run the image:
 
