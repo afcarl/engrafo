@@ -22,6 +22,8 @@
     "jest": "^23.1.0",
     "jest-image-snapshot": "^2.4.3",
     "jest-puppeteer": "^3.2.1",
+    "node-sass": "^4.9.0",
+    "parcel-bundler": "^1.8.1",
     "prettier": "^1.13.5",
     "puppeteer": "^1.5.0",
     "tmp": "^0.0.33"
