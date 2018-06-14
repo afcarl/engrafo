@@ -1,0 +1,69 @@
+@import "./variables.scss";
+@import "./layout.scss";
+@import "./figures.scss";
+@import "./headings.scss";
+
+.ltx_page_main {
+  color: rgba(0, 0, 0, 0.8);
+  font-family: $bodyFontFamily;
+  font-size: 17px;
+  line-height: 1.55em;
+  padding-bottom: 72px;
+  background: white;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+
+  a {
+    color: inherit;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+
+    &:hover {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+    }
+  }
+}
+
+.ltx_page_content {
+  margin-bottom: 4rem;
+}
+
+.ltx_authors {
+  font-family: $systemFontFamily;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.55em;
+}
+
+.ltx_p {
+  margin-bottom: 24px;
+}
+
+.ltx_page_footer {
+  padding: 1em;
+  font-family: $systemFontFamily;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.55em;
+}
+.ltx_indent {
+  margin-left: 2rem;
+}
+
+.ltx_cite {
+  font-style: normal;
+}
+
+/* LaTeXML system stuff */
+.ltx_ERROR,
+.ltx_missing,
+.ltx_nounicode {
+  font-size: 12px;
+  font-family: $systemFontFamily;
+  color: red;
+}
+.ltx_rdf {
+  display: none;
+}

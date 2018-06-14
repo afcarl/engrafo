@@ -1,0 +1,35 @@
+.ltx_document,
+.ltx_section,
+.ltx_appendix {
+  display: grid;
+  grid-template-columns: [screen-start] 8px [page-start] 1fr [page-end] 8px [screen-end];
+  grid-column-gap: 8px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: [screen-start] 1fr [page-start text-start] 45px 45px 45px 45px 45px 45px 45px 45px [ page-end text-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  @media (min-width: 1080px) {
+    grid-template-columns: [screen-start] 1fr [page-start text-start] 650px [text-end gutter-start] 330px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+}
+
+.ltx_document > * {
+  grid-column: page;
+}
+
+.ltx_document > .ltx_abstract {
+  grid-column: text;
+}
+
+.ltx_section,
+.ltx_appendix {
+  grid-column: screen;
+}
+
+.ltx_section > *,
+.ltx_appendix > * {
+  grid-column: text;
+}

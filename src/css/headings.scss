@@ -1,0 +1,94 @@
+.ltx_title_document {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1em;
+  font-family: $headingFontFamily;
+
+  @media (min-width: 768px) {
+    font-size: 46px;
+    margin-top: 48px;
+  }
+
+  @media (min-width: 1080px) {
+    font-size: 50px;
+    letter-spacing: -0.02em;
+  }
+}
+
+.ltx_title_section,
+.ltx_title_abstract,
+.ltx_title_appendix,
+.ltx_title_bibliography {
+  font-family: $headingFontFamily;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.25em;
+  margin-top: 36px;
+  margin-bottom: 24px;
+
+  @media (min-width: 1024px) {
+    margin-top: 48px;
+    font-size: 32px;
+  }
+}
+
+.ltx_title_subsection {
+  font-family: $headingFontFamily;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.4em;
+  margin-top: 36px;
+  margin-bottom: 18px;
+  font-style: italic;
+
+  @media (min-width: 1024px) {
+    font-size: 28px;
+  }
+}
+
+/* Section numbers */
+.ltx_title_section,
+.ltx_title_abstract,
+.ltx_title_appendix,
+.ltx_title_bibliography,
+.ltx_title_subsection {
+  position: relative;
+  /* Space for section number */
+  padding-right: 40px;
+
+  @media (min-width: 768px) {
+    padding-right: 0;
+  }
+}
+
+.ltx_tag_section,
+.ltx_tag_subsection {
+  font-family: $headingFontFamily;
+  font-style: normal;
+  color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  width: 150px;
+  right: 0;
+  text-align: right;
+  font-size: 0.9em;
+
+  @media (min-width: 768px) {
+    right: unset;
+    left: -170px;
+  }
+  @media (min-width: 1080px) {
+    right: unset;
+    left: -180px;
+  }
+
+  a,
+  a:active {
+    border-bottom: none;
+  }
+
+  a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+}
