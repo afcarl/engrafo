@@ -25,6 +25,8 @@ function render({ texPath, outputDir }) {
       "--format",
       "html5",
       "--nodefaultresources",
+      "--css",
+      path.join(__dirname, "../dist/index.css"),
       "--mathtex",
       "--svg",
       "--verbose",

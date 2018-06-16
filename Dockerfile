@@ -60,7 +60,7 @@ RUN mkdir -p /app /node_modules
 RUN chown engrafo:engrafo /app /node_modules
 WORKDIR /app
 
-# Run user as non privileged.
+# Install Node packages as non-root so that headless Chrome runs
 USER engrafo
 
 # Node
@@ -74,3 +74,14 @@ ENV PATH /node_modules/.bin:$PATH
 ENV PATH="/app/bin:${PATH}"
 
 COPY . /app
+
+# Build production CSS as root because non-root user can't write to /app for
+# some reason
+USER root
+
+# Build production CSS and JS
+RUN yarn run build
+
+# Run everything as normal user so headless Chrome runs. And, you know, for
+# security and whatever.
+USER engrafo
