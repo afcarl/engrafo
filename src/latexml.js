@@ -14,36 +14,37 @@ function unlinkIfExists(path) {
 }
 
 // render a document with latexml
-function render({ texPath, outputDir }) {
-  var htmlPath = path.join(outputDir, "index.html");
+function render({ texPath, outputDir, cssPath }) {
+  const htmlPath = path.join(outputDir, "index.html");
 
-  var latexmlc = childProcess.spawn(
-    "latexmlc",
-    [
-      "--dest",
-      htmlPath,
-      "--format",
-      "html5",
-      "--nodefaultresources",
-      "--css",
-      path.join(__dirname, "../dist/index.css"),
-      "--mathtex",
-      "--svg",
-      "--verbose",
-      "--preload",
-      "/app/latexml/engrafo.ltxml",
-      "--preload",
-      "/usr/src/latexml/lib/LaTeXML/Package/hyperref.sty.ltxml",
-      texPath
-    ],
-    {
-      cwd: path.dirname(texPath)
-    }
-  );
+  const args = [
+    "--dest",
+    htmlPath,
+    "--format",
+    "html5",
+    "--nodefaultresources",
+    "--mathtex",
+    "--svg",
+    "--verbose",
+    "--preload",
+    "/app/latexml/engrafo.ltxml",
+    "--preload",
+    "/usr/src/latexml/lib/LaTeXML/Package/hyperref.sty.ltxml"
+  ];
 
-  var stdoutReadline = readline.createInterface({ input: latexmlc.stdout });
+  if (cssPath) {
+    args.push("--css", cssPath);
+  }
+
+  args.push(texPath);
+
+  const latexmlc = childProcess.spawn("latexmlc", args, {
+    cwd: path.dirname(texPath)
+  });
+
+  const stdoutReadline = readline.createInterface({ input: latexmlc.stdout });
   stdoutReadline.on("line", console.log);
-  var stderrReadline = readline.createInterface({ input: latexmlc.stderr });
+  const stderrReadline = readline.createInterface({ input: latexmlc.stderr });
   stderrReadline.on("line", console.error);
 
   return new Promise((resolve, reject) => {
